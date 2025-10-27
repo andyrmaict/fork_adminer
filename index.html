@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adminer - Database Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .link-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #007cba;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .link-button:hover {
+            background-color: #005a8a;
+        }
+        .info {
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .database-examples {
+            margin-top: 30px;
+        }
+        .database-examples h3 {
+            color: #333;
+        }
+        .db-example {
+            background-color: #f9f9f9;
+            border-left: 4px solid #007cba;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗃️ Adminer Database Management</h1>
+        
+        <div class="info">
+            <strong>Welcome to Adminer!</strong><br>
+            A full-featured database management tool running in Docker on port 8060.
+        </div>
+
+        <div class="links">
+            <a href="/adminer/" class="link-button">📊 Adminer (Full Version)</a>
+            <a href="/editor/" class="link-button">✏️ Adminer Editor</a>
+        </div>
+
+        <div class="database-examples">
+            <h3>Database Connection Examples:</h3>
+            
+            <div class="db-example">
+                <strong>Local MySQL/MariaDB:</strong><br>
+                Server: <code>host.docker.internal</code><br>
+                Port: <code>3306</code>
+            </div>
+            
+            <div class="db-example">
+                <strong>Local PostgreSQL:</strong><br>
+                Server: <code>host.docker.internal</code><br>
+                Port: <code>5432</code>
+            </div>
+            
+            <div class="db-example">
+                <strong>SQLite Database:</strong><br>
+                Just select SQLite as the system and provide the database file path
+            </div>
+            
+            <div class="db-example">
+                <strong>Docker Compose Databases:</strong><br>
+                If you enable the database services in docker-compose.yml:<br>
+                • MySQL: Server = <code>mysql</code>, Port = <code>3306</code><br>
+                • PostgreSQL: Server = <code>postgres</code>, Port = <code>5432</code>
+            </div>
+        </div>
+
+        <div class="info">
+            <strong>Note:</strong> To connect to databases on your host machine from within Docker, 
+            use <code>host.docker.internal</code> as the server address instead of <code>localhost</code>.
+        </div>
+    </div>
+</body>
+</html>

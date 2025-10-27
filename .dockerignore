@@ -1,0 +1,22 @@
+# Docker ignore file for Adminer
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
+developing.md
+SECURITY.md
+todo.txt
+LICENSE
+Makefile
+phpcs.xml
+phpstan.neon
+eslint.config.mjs
+tests/
+coverage.php
+.github/
+.vscode/
+*.md

@@ -243,7 +243,7 @@ if (isset($_GET["clickhouse"])) {
 	}
 
 	function limit($query, $where, $limit, $offset = 0, $separator = " ") {
-		return " $query$where" . ($limit ? $separator . "LIMIT " . ($offset ? "$offset, " : "") . $limit : "");
+		return " $query$where" . ($limit ? $separator . "LIMIT $limit" . ($offset ? ", $offset" : "") : "");
 	}
 
 	function limit1($table, $query, $where, $separator = "\n") {
@@ -274,7 +274,7 @@ if (isset($_GET["clickhouse"])) {
 
 	function table_status($name = "", $fast = false) {
 		$return = array();
-		$tables = get_rows("SELECT name, engine FROM system.tables WHERE database = " . q(connection()->_db) . ($name != "" ? " AND name = " . q($name) : ""));
+		$tables = get_rows("SELECT name, engine FROM system.tables WHERE database = " . q(connection()->_db));
 		foreach ($tables as $table) {
 			$return[$table['name']] = array(
 				'Name' => $table['name'],

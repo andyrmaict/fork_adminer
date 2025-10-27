@@ -1,0 +1,57 @@
+services:
+  adminer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: adminer-app
+    ports:
+      - "8060:80"
+    # Uncomment the volumes below for development mode
+    # volumes:
+    #   - ./adminer:/var/www/html/adminer
+    #   - ./editor:/var/www/html/editor
+    #   - ./plugins:/var/www/html/plugins
+    #   - ./designs:/var/www/html/designs
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    restart: unless-stopped
+    networks:
+      - adminer-network
+
+  # Example database services (uncomment as needed)
+  # mysql:
+  #   image: mysql:8.0
+  #   container_name: adminer-mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: rootpassword
+  #     MYSQL_DATABASE: testdb
+  #     MYSQL_USER: testuser
+  #     MYSQL_PASSWORD: testpassword
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #   networks:
+  #     - adminer-network
+
+  # postgres:
+  #   image: postgres:15
+  #   container_name: adminer-postgres
+  #   environment:
+  #     POSTGRES_DB: testdb
+  #     POSTGRES_USER: testuser
+  #     POSTGRES_PASSWORD: testpassword
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - adminer-network
+
+networks:
+  adminer-network:
+    driver: bridge
+
+# volumes:
+#   mysql_data:
+#   postgres_data:
