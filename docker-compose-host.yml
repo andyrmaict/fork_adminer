@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: adminer-app-host
     ports:
-      - "8061:80"
+      - "8060:80"
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
     restart: unless-stopped
