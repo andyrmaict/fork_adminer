@@ -1,0 +1,34 @@
+services:
+  adminer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: adminer-app-host
+    ports:
+      - "8061:80"
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    restart: unless-stopped
+    # Use host networking to access databases on the host
+    network_mode: host
+
+# Alternative: Use external network
+# services:
+#   adminer:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: adminer-app-external
+#     ports:
+#       - "8061:80"
+#     environment:
+#       - APACHE_DOCUMENT_ROOT=/var/www/html
+#     restart: unless-stopped
+#     networks:
+#       - default
+#       - external-network
+#
+# networks:
+#   external-network:
+#     external: true
+#     name: your-mysql-network-name
