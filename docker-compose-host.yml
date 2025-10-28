@@ -9,8 +9,13 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
     restart: unless-stopped
+    # Add host.docker.internal for Linux compatibility
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     # Use host networking to access databases on the host
-    network_mode: host
+    # NOTE: When using network_mode: host, the ports section is ignored
+    # and Adminer will be available on port 80 of the host
+    # network_mode: host
 
 # Alternative: Use external network
 # services:

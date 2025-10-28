@@ -60,9 +60,53 @@ The Docker setup includes optional database services that you can uncomment in `
 
 ### Connecting to External Databases
 
-When connecting to databases outside the Docker network, use:
-- **Host:** `host.docker.internal` (for databases on the host machine)
-- **Host:** The actual IP/hostname (for remote databases)
+When connecting to databases outside the Docker network:
+
+#### On All Platforms (Windows, macOS, Linux):
+- **Host:** `host.docker.internal` - This is now configured to work on Linux too!
+- **Port:** Your database port (e.g., 7200 for MariaDB, 3306 for MySQL, 5432 for PostgreSQL)
+
+The docker-compose.yml includes `extra_hosts` configuration that makes `host.docker.internal` work on Linux:
+```yaml
+extra_hosts:
+  - "host.docker.internal:host-gateway"
+```
+
+#### Alternative Methods:
+
+1. **Use host networking mode** (see `docker-compose-host.yml`):
+   - Access databases on host using `localhost` or `127.0.0.1`
+   - Note: Port mapping doesn't work with host networking
+
+2. **Use the host's actual IP address:**
+   ```bash
+   # Find your host IP
+   ip addr show docker0 | grep inet
+   # Or on Linux
+   hostname -I
+   ```
+   - Then use that IP (e.g., `172.17.0.1` or `192.168.1.x`)
+
+3. **Connect both containers to the same network:**
+   - If your database is also in Docker, put them in the same network
+   - Use the database container name as the hostname
+
+#### Examples:
+
+**MariaDB on host (port 7200):**
+- Server: `host.docker.internal:7200`
+- Username: your_username
+- Password: your_password
+- Database: your_database
+
+**MySQL on host (default port):**
+- Server: `host.docker.internal:3306` or just `host.docker.internal`
+- Username: root
+- Password: your_password
+
+**Remote database:**
+- Server: actual hostname or IP address
+- Port: database port
 
 ## Development Mode
 
